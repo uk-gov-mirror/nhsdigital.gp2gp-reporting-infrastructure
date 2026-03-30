@@ -15,6 +15,14 @@ resource "aws_ses_email_identity" "gp2gp_mailbox" {
   email = data.aws_ssm_parameter.gp2gp_mailbox.value
 }
 
+data "aws_ssm_parameter" "email_report_recipient_internal_email_param_name" {
+  name = var.email_report_recipient_internal_email_param_name
+}
+
+resource "aws_ses_email_identity" "gp2gp_internal_mailbox" {
+  email = data.aws_ssm_parameter.email_report_recipient_internal_email_param_name.value
+}
+
 resource "aws_ses_domain_identity" "gp2gp_inbox" {
   domain = local.ses_domain
 }
