@@ -123,7 +123,8 @@ data "aws_iam_policy_document" "email_report_send_raw_email" {
 
     resources = [
       "arn:aws:ses:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:identity/${aws_ses_domain_identity.gp2gp_inbox.domain}",
-      "arn:aws:ses:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:identity/${data.aws_ssm_parameter.email_report_recipient_internal_email_param_name.value}"
+      "arn:aws:ses:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:identity/${data.aws_ssm_parameter.email_report_recipient_internal_email_param_name.value}",
+      "arn:aws:ses:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:identity/${data.aws_ssm_parameter.gp2gp_mailbox.value}"
     ]
   }
 }
